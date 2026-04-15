@@ -6,6 +6,7 @@ Current version uses synthetic data based on patterns described in the literatur
 ## Current status
 
 The current version uses a synthetic dataset of 200 samples generated from patterns described in the literature. This was done to prototype the workflow before the final real dataset is gathered and organized.
+Literature used: Bey K., Campos-Martin R., Klawohn J., Reuter B., Grutzmann R., Riesel A., et al. (2022). Hypermethylation of the oxytocin receptor gene (OXTR) in obsessive-compulsive disorder: further evidence for a biomarker of disease and treatment response. Epigenetics 17, 642–652. 10.1080/15592294.2021.1943864 [DOI] [PMC free article] [PubMed] [Google Scholar]
 
 This is therefore it is not a finalized clinical model.
 
