@@ -95,7 +95,7 @@ def evaluate(model, loader, criterion, device):
             X, y = X.to(device), y.to(device)
             logits = model(X)
             total_loss += criterion(logits, y).item() * len(y)
-            probs = torch.softmax(logits, dim=1)[:, 1]
+            probs = torch.softmax(logits, dim=1)[:, 1] #convert logits to probabilities and keep probability of class 1 (OCD)
             all_probs.extend(probs.cpu().numpy())
             all_labels.extend(y.cpu().numpy())
 
@@ -211,7 +211,7 @@ def run_pipeline():
 
     # train validation split
     dataset = OXTRDataset(features, labels)
-    n_val   = int(0.2 * len(dataset))
+    n_val   = int(0.2 * len(dataset)) #reserved 20% of the samples for validation
     train_ds, val_ds = random_split(
         dataset, [len(dataset) - n_val, n_val],
         generator=torch.Generator().manual_seed(SEED)
@@ -220,7 +220,7 @@ def run_pipeline():
     val_loader   = DataLoader(val_ds,   batch_size=BATCH_SIZE)
 
     
-    model     = OXTRModel(n_features=N_FEATURES).to(device)
+    model     = OXTRModel(n_features=N_FEATURES).to(device) #initialize the neural network
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=LR, weight_decay=1e-4)
     scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=15, gamma=0.5)
